@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Dancing+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>CART</title>
+</head>
+
+<body>
+    <header>
+        <nav class="flex items-center justify-between h-16 text-[#220E0A] px-4 md:px-5">
+            <p class="text-3xl md:text-4xl font-bold">PARES</p>
+            
+            <div class="hidden md:flex gap-8">
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <a href="cart.html" class="flex items-center transition relative">
+                    <svg class="w-6 h-6 mr-8 " fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"/>
+                    </svg>
+                    <span id="cartCounter" class="text-lg md:text-2xl font-semibold text-[#220E0A] px-2 py-1  hidden absolute -top-2 -right-1">0</span>
+                </a>
+
+                <a href="login.html">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a7.5 7.5 0 0 1 15 0"/>
+                    </svg>
+                </a>
+
+                <button id="menuBtn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobileMenu" class="hidden md:hidden px-5 py-4 space-y-3 bg-white border-t border-gray-200">
+            <a href="index.html" class="block py-2 hover:bg-[#f6e3b4e8] px-4 rounded-lg transition">Home</a>
+            <a href="products.html" class="block py-2 hover:bg-[#f6e3b4e8] px-4 rounded-lg transition">Shop</a>
+            <a href="#" class="block py-2 hover:bg-[#f6e3b4e8] px-4 rounded-lg transition">About</a>
+            <a href="#" class="block py-2 hover:bg-[#f6e3b4e8] px-4 rounded-lg transition">Contact</a>
+        </div>
+    </header>
+
+    <section class="min-h-screen py-8 md:py-10 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-8 text-center md:text-left">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#220E0A] mb-2">Your Cart</h1>
+                <p class="text-lg md:text-xl text-gray-600">Review your items and proceed to checkout</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="lg:col-span-2 ">
+                    <div id="cartContainer">
+                        <div id="emptyCart" class="text-center ">
+                            <svg class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 3h18l-2 12H5l-2-12zM12 15a2 2 0 100-4 2 2 0 000 4z"/>
+                            </svg>
+                            <h3 class="text-xl md:text-2xl font-semibold text-[#220E0A] mb-2">Your cart is empty</h3>
+                            <p class="text-gray-600 mb-8 text-sm md:text-base">Add some products to get started</p>
+                            <a href="products.html" class="inline-block bg-[#f6e3b4e8] hover:bg-[#e8d19c] text-[#220E0A] font-medium py-3 px-8 rounded-lg transition">Continue Shopping</a>
+                        </div>
+
+                        <div id="cartItemsList" class="hidden grid grid-cols-1 gap-4 md:gap-6 mb-12">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:max-w-md w-full lg:sticky lg:top-6">
+                    <div id="orderSummary" class="bg-white rounded-2xl shadow-xl p-4 md:p-6 hidden">
+                        <h2 class="text-xl md:text-2xl font-bold text-[#220E0A] mb-6">Order Summary</h2>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between text-base md:text-lg">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <hr class="border-gray-200">
+                            <div class="flex justify-between text-xl md:text-2xl font-bold text-[#220E0A]">
+                                <span>Total</span>
+                                <span id="total">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <button id="checkoutBtn" class="w-full bg-[#220E0A] hover:bg-[#180a07] text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl transition duration-300 text-base outline-none md:text-lg mb-4">
+                            Proceed to Checkout
+                        </button>
+                        <a href="products.html" class="w-full block text-center text-[#220E0A] font-medium py-3 border border-[#220E0A] rounded-xl transition outline-none text-sm md:text-base">
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="checkoutModal" class="fixed inset-0 bg-black/70 z-[1000] hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl md:rounded-3xl max-w-4xl md:max-w-2xl w-full max-h-[95vh] overflow-y-auto shadow-2xl mx-2">
+                <div class="p-6 md:p-8 border-b border-gray-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#220E0A]">Checkout</h2>
+                        <button id="closeCheckout" class="text-xl md:text-2xl text-gray-500 hover:text-[#220E0A] transition p-2">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">Review your order before completing purchase</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="text-lg md:text-xl font-semibold text-[#220E0A]">Order Items</h3>
+                        <div id="modalCartItems" class="max-h-64 overflow-y-auto space-y-3"></div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-2xl p-4 md:p-6">
+                        <div class="flex justify-between text-base md:text-lg mb-2">
+                            <span>Subtotal</span>
+                            <span id="modalSubtotal">$0.00</span>
+                        </div>
+                        <hr class="border-gray-200 mb-4">
+                        <div class="flex justify-between text-xl md:text-2xl font-bold text-[#220E0A]">
+                            <span>Total</span>
+                            <span id="modalTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-8 pt-0 border-t border-gray-100 bg-gray-50 rounded-b-2xl md:rounded-b-3xl">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button id="confirmPurchase" class="flex-1 bg-[#220E0A] hover:bg-[#180a07] text-white font-bold py-4 px-6 rounded-xl transition text-lg">
+                            Complete Purchase
+                        </button>
+                        <button id="cancelCheckout" class="flex-1 border border-[#220E0A] text-[#220E0A] font-bold py-4 px-6 rounded-xl transition text-lg">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#f5eacf] text-[#220E0A] p-5 md:p-8">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-6 md:gap-8 max-w-7xl mx-auto">
+            <div class="flex flex-col w-full md:w-1/3 gap-4">
+                <p class="text-sm sm:text-base md:text-lg font-semibold text-[#220E0A] leading-relaxed">
+                    Friends let friends know about best products and content.
+                </p>
+                <div class="relative w-full max-w-md">
+                    <i class="fa-brands fa-telegram absolute right-4 top-1/2 -translate-y-1/2 text-2xl text-[#220E0A]"></i>
+                    <input 
+                        class="w-full pr-12 pl-5 py-3 bg-[#f5eacf] border border-[#220E0A] rounded-full outline-none 
+                        focus:ring-2 focus:ring-[#220E0A] focus:border-transparent text-base md:text-lg"
+                        type="email" 
+                        placeholder="Enter email address..."
+                    >
+                </div>
+            </div>
+            <div class="hidden md:block h-[200px] w-[2px] 
+                bg-[repeating-linear-gradient(to_bottom,rgb(105_104_104)_0,rgb(105_104_104)_5px,transparent_5px,transparent_8px)]">
+            </div>
+            <div class="flex flex-col sm:flex-row gap-6 md:gap-12 w-full md:w-auto">
+                <div class="flex flex-col gap-4 sm:gap-6 text-sm sm:text-base">
+                    <a href="products.html" class="hover:underline">Shop</a>
+                    <a href="#" class="hover:underline">About</a>
+                    <a href="#" class="hover:underline">FAQ</a>
+                    <a href="#" class="hover:underline">Shopping & Returns</a>
+                </div>
+                <div class="flex flex-col gap-4 sm:gap-6 text-sm sm:text-base mt-2 sm:mt-0">
+                    <a href="#" class="hover:underline">Terms and Conditions</a>
+                    <a href="#" class="hover:underline">Privacy policy</a>
+                    <a href="#" class="hover:underline">Cookies policy</a>
+                    <a href="#" class="hover:underline">Contact us</a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full my-8 border-t-2 border-dashed border-[rgb(105_104_104)]"></div>
+        <div class="w-full flex justify-center overflow-hidden">
+            <h1 class="text-[80px] sm:text-[120px] md:text-[200px] lg:text-[280px] leading-none text-center truncate">
+                PARES
+            </h1>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+
+        const cartContainer = document.getElementById('cartContainer');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const emptyCart = document.getElementById('emptyCart');
+        const orderSummary = document.getElementById('orderSummary');
+        const cartCounter = document.getElementById('cartCounter');
+        const subtotalEl = document.getElementById('subtotal');
+        const totalEl = document.getElementById('total');
+
+        function updateCartCounter() {
+            cartCounter.textContent = cartCount;
+            cartCounter.classList.toggle('hidden', cartCount === 0);
+        }
+
+        function updateTotals() {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+            const total = subtotal;
+            
+            subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            totalEl.textContent = `$${total.toFixed(2)}`;
+            
+            cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCounter();
+        }
+
+        function renderCartItems() {
+            if (cartItems.length === 0) {
+                cartItemsList.classList.add('hidden');
+                emptyCart.classList.remove('hidden');
+                orderSummary.classList.add('hidden');
+                updateCartCounter();
+                return;
+            }
+            
+            emptyCart.classList.add('hidden');
+            cartItemsList.classList.remove('hidden');
+            orderSummary.classList.remove('hidden');
+            
+            cartItemsList.innerHTML = cartItems.map((item, index) => `
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl p-4 md:p-6 border border-gray-100">
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-full md:w-80 h-32 md:h-40 object-cover rounded-xl flex-shrink-0">
+                        <div class="flex-1 w-full md:min-w-0">
+                            <h3 class="font-semibold text-[#220E0A] text-base md:text-lg truncate">${item.name}</h3>
+                            <p class="text-gray-600 text-sm md:text-base">$${item.price}</p>
+                        </div>
+                        <div class="flex items-center gap-2 md:gap-3 w-full md:w-auto justify-between md:justify-normal">
+                            <button onclick="updateQuantity(${index}, -1)" class="w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center text-lg md:text-xl font-bold transition">-</button>
+                            <span class="text-lg md:text-xl font-bold min-w-[2.5rem] text-center">${item.quantity || 1}</span>
+                            <button onclick="updateQuantity(${index}, 1)" class="w-10 h-10 bg-[#f6e3b4e8] hover:bg-[#e8d19c] rounded-full flex items-center justify-center text-lg md:text-xl font-bold transition">+</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
+                        <p class="text-xl md:text-2xl font-bold text-[#220E0A]">${(item.price * (item.quantity || 1)).toFixed(2)}</p>
+                        <button onclick="removeItem(${index})" class="text-red-500 hover:text-red-700 text-sm md:text-base font-medium whitespace-nowrap">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateTotals();
+        }
+
+        function updateQuantity(index, change) {
+            if (!cartItems[index]) return;
+            if (cartItems[index].quantity) {
+                cartItems[index].quantity += change;
+                if (cartItems[index].quantity <= 0) {
+                    removeItem(index);
+                    return;
+                }
+            }
+            renderCartItems();
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            renderCartItems();
+        }
+
+        function openCheckoutModal() {
+            if (cartItems.length === 0) return;
+            document.getElementById('checkoutModal').classList.remove('hidden');
+            renderModalCartItems();
+            updateModalTotals();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function renderModalCartItems() {
+            const modalCartItems = document.getElementById('modalCartItems');
+            modalCartItems.innerHTML = cartItems.map(item => `
+                <div class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg flex-shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-semibold text-[#220E0A] text-sm md:text-base truncate">${item.name}</h4>
+                        <p class="text-sm text-gray-600">$${item.price} x ${item.quantity || 1}</p>
+                    </div>
+                    <p class="font-bold text-base md:text-lg text-[#220E0A]">${(item.price * (item.quantity || 1)).toFixed(2)}</p>
+                </div>
+            `).join('');
+        }
+
+        function updateModalTotals() {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+            document.getElementById('modalSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('modalTotal').textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        function clearCart() {
+            cartItems = [];
+            localStorage.removeItem('cartItems');
+            cartCount = 0;
+            renderCartItems();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCartItems();
+            
+            document.getElementById('checkoutBtn').addEventListener('click', openCheckoutModal);
+            
+            document.getElementById('closeCheckout').addEventListener('click', closeCheckoutModal);
+            document.getElementById('cancelCheckout').addEventListener('click', closeCheckoutModal);
+            document.getElementById('confirmPurchase').addEventListener('click', function() {
+                document.getElementById('confirmPurchase').innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                document.getElementById('confirmPurchase').disabled = true;
+                
+                setTimeout(() => {
+                    clearCart();
+                    closeCheckoutModal();
+                    
+                    const popup = document.createElement('div');
+                    popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-[1001] p-4';
+                    popup.innerHTML = `
+                        <div class="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 max-w-md w-full text-center shadow-2xl mx-4">
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-green-100 rounded-3xl flex items-center justify-center mx-auto mb-8">
+                                <i class="fas fa-check text-2xl md:text-4xl text-green-500"></i>
+                            </div>
+                            <h2 class="text-2xl md:text-4xl font-bold text-[#220E0A] mb-6">Thank You!</h2>
+                            <p class="text-lg md:text-xl text-gray-700 mb-8">Your order has been placed successfully.</p>
+                            <a href="products.html" class="inline-block bg-[#220E0A] hover:bg-[#180a07] text-white font-bold py-3 md:py-4 px-8 md:px-12 rounded-xl transition text-lg">Continue Shopping</a>
+                        </div>
+                    `;
+                    document.body.appendChild(popup);
+                    
+                    setTimeout(() => {
+                        window.location.href = 'products.html';
+                    }, 2500);
+                }, 1500);
+            });
+            
+            document.getElementById('checkoutModal').addEventListener('click', function(e) {
+                if (e.target === this) closeCheckoutModal();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+
+body{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  background-color: #d1cbb214;
+}
+.box1>div{
+  width: 250px;
+  height: 380px;
+}
+@media (max-width: 768px) {
+  #orderSummary {
+    margin-top: 2rem;
+    position: relative !important;
+    top: auto !important;
+  }
+  .checkout-form-input {
+    font-size: 16px;
+  }
+  footer h1 {
+    font-size: clamp(2rem, 15vw, 4rem);
+  }
+}
