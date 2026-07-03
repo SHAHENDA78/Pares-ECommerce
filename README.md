@@ -1,2 +1,20 @@
-# Pares-ECommerce
-Responsive perfume website using HTML, CSS, and JS
+# Perfume E-Commerce Website
+
+A responsive e-commerce website for perfumes built using HTML, CSS, and JavaScript.
+
+## Features
+- Responsive Design
+- Product Listing
+- Shopping Cart
+- Login Page
+- Product Details
+- Modern UI
+
+## Technologies
+- HTML5
+- CSS3
+- JavaScript
+
+## Live Demo
+ https://shahenda78.github.io/Pares-ECommerce/
+ 
