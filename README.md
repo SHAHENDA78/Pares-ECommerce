@@ -16,5 +16,5 @@ A responsive e-commerce website for perfumes built using HTML, CSS, and JavaScri
 - JavaScript
 
 ## Live Demo
- https://shahenda78.github.io/Pares-ECommerce/
+ https://luxeshop-react.vercel.app
  
